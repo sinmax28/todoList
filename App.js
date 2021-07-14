@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useState } from 'react';
 import {
   SafeAreaView,
@@ -16,6 +8,7 @@ import {
   TextInput,
   useColorScheme,
   View,
+  Platform
 } from 'react-native';
 
 import {
@@ -47,13 +40,14 @@ const App = () => {
             style={styles.inputContainer}
             placeholder="baga aici tasku'!"
             onChangeText={input => setInputTask(input)}
-            onSubmitEditing={() => {setTaskList([...taskList, inputTask]); setInputTask('')}}
+            onSubmitEditing={() => {
+              setTaskList([...taskList, inputTask]); 
+              setInputTask('');
+            }}
             defaultValue={inputTask}
           />
           {!taskList.length ? <Text>Nimic de aratat :'(</Text> : 
-            taskList.map((task, index) => {
-              return <Text key={index}>{task}</Text>
-            })
+            taskList.map((task, index) => <Text key={index}>{task}</Text>)
           }
          
         </View>
@@ -62,9 +56,25 @@ const App = () => {
 
 const styles = StyleSheet.create({
   app: {
-    backgroundColor: 'white',
-    marginTop: '20%'
+    // backgroundColor: 'white',
+    marginTop: 'auto',
+    // borderWidth: 1,
+    // borderColor: '#000000',
+    // flex: 1,
+    display: 'flex',
+    // flexDirection: 'column',
+    alignItems: 'center',
+    // justifyContent: 'center'
+    // alignItems: 'baseline'
     // innerWidth: 30rem,
+    ...Platform.select({
+      ios: {
+        backgroundColor: 'powderblue'
+      },
+      android: {
+        backgroundColor: 'steelblue'
+      }
+    })
   },
 
   inputContainer :{
