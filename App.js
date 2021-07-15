@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,7 +8,8 @@ import {
   TextInput,
   useColorScheme,
   View,
-  Platform
+  Platform,
+  Button,
 } from 'react-native';
 
 import {
@@ -18,6 +19,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Task from './Task';
 
 const App = () => {
   const [inputTask, setInputTask] = useState('');
@@ -28,40 +30,51 @@ const App = () => {
   //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   // };
 
-  const handleSubmit = () => {
-    
-  }
+  const handleAdd = () => {
+    setTaskList([...taskList, inputTask]);
+    setInputTask('');
+  };
+
+  const handleRemove = id =>
+    setTaskList(taskList.filter((_, index) => index != id));
 
   return (
-        <View
-          style={styles.app}
-        >
-          <TextInput
-            style={styles.inputContainer}
-            placeholder="baga aici tasku'!"
-            onChangeText={input => setInputTask(input)}
-            onSubmitEditing={() => {
-              setTaskList([...taskList, inputTask]); 
-              setInputTask('');
-            }}
-            defaultValue={inputTask}
+    <View style={styles.app}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.inputField}
+          placeholder="baga aici tasku'!"
+          onChangeText={input => setInputTask(input)}
+          onSubmitEditing={handleAdd}
+          defaultValue={inputTask}
+        />
+        <Button title="Add" onPress={handleAdd} />
+      </View>
+
+      {!taskList.length ? (
+        <Text>Nimic de aratat :'(</Text>
+      ) : (
+        taskList.map((task, index) => (
+          <Task
+            key={index}
+            handleRemove={handleRemove}
+            task={task}
+            id={index}
           />
-          {!taskList.length ? <Text>Nimic de aratat :'(</Text> : 
-            taskList.map((task, index) => <Text key={index}>{task}</Text>)
-          }
-         
-        </View>
+        ))
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   app: {
     // backgroundColor: 'white',
-    marginTop: 'auto',
+    marginTop: '20%',
     // borderWidth: 1,
     // borderColor: '#000000',
     // flex: 1,
-    display: 'flex',
+    // display: 'flex',
     // flexDirection: 'column',
     alignItems: 'center',
     // justifyContent: 'center'
@@ -69,36 +82,43 @@ const styles = StyleSheet.create({
     // innerWidth: 30rem,
     ...Platform.select({
       ios: {
-        backgroundColor: 'powderblue'
+        backgroundColor: 'powderblue',
       },
       android: {
-        backgroundColor: 'steelblue'
-      }
-    })
+        backgroundColor: 'steelblue',
+      },
+    }),
   },
 
-  inputContainer :{
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+
+  inputField: {
+    flex: 1,
     width: '80%',
     height: 40,
-    borderWidth: 1
+    borderWidth: 1,
   },
 
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  // sectionContainer: {
+  //   marginTop: 32,
+  //   paddingHorizontal: 24,
+  // },
+  // sectionTitle: {
+  //   fontSize: 24,
+  //   fontWeight: '600',
+  // },
+  // sectionDescription: {
+  //   marginTop: 8,
+  //   fontSize: 18,
+  //   fontWeight: '400',
+  // },
+  // highlight: {
+  //   fontWeight: '700',
+  // },
 });
 
 export default App;
