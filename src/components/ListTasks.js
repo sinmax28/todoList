@@ -11,24 +11,11 @@ import {
   Platform,
   Button,
 } from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import Task from './Task';
 
-const App = () => {
+const ListTasks = () => {
   const [inputTask, setInputTask] = useState('');
   const [taskList, setTaskList] = useState([]);
-  // const isDarkMode = useColorScheme() === 'dark';
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  // };
 
   const handleAdd = () => {
     setTaskList([...taskList, inputTask]);
@@ -121,4 +108,4 @@ const styles = StyleSheet.create({
   // },
 });
 
-export default App;
+export default ListTasks;
