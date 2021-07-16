@@ -27,17 +27,6 @@ const ListTasks = () => {
 
   return (
     <View style={styles.app}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.inputField}
-          placeholder="baga aici tasku'!"
-          onChangeText={input => setInputTask(input)}
-          onSubmitEditing={handleAdd}
-          defaultValue={inputTask}
-        />
-        <Button title="Add" onPress={handleAdd} />
-      </View>
-
       {!taskList.length ? (
         <Text>Nimic de aratat :'(</Text>
       ) : (
@@ -57,10 +46,10 @@ const ListTasks = () => {
 const styles = StyleSheet.create({
   app: {
     // backgroundColor: 'white',
-    marginTop: '20%',
+    marginTop: '30%',
     // borderWidth: 1,
     // borderColor: '#000000',
-    // flex: 1,
+    flex: 1,
     // display: 'flex',
     // flexDirection: 'column',
     alignItems: 'center',
@@ -69,7 +58,7 @@ const styles = StyleSheet.create({
     // innerWidth: 30rem,
     ...Platform.select({
       ios: {
-        backgroundColor: 'powderblue',
+        backgroundColor: '#e8e8e8',
       },
       android: {
         backgroundColor: 'steelblue',
@@ -77,18 +66,18 @@ const styles = StyleSheet.create({
     }),
   },
 
-  inputContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
+  // inputContainer: {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   flexWrap: 'wrap',
+  // },
 
-  inputField: {
-    flex: 1,
-    width: '80%',
-    height: 40,
-    borderWidth: 1,
-  },
+  // inputField: {
+  //   flex: 1,
+  //   width: '80%',
+  //   height: 40,
+  //   borderWidth: 1,
+  // },
 
   // sectionContainer: {
   //   marginTop: 32,

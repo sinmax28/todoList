@@ -1,9 +1,18 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-const DetailsScreen = () => {
+import {Button, Text, View} from 'react-native';
+import styles from '../styles/GeneralStyle';
+const DetailsScreen = ({navigation, route}) => {
+  const {item} = route.params;
   return (
-    <View style={{flex: 1, marginTop: '20%', alignItems: 'center'}}>
-      <Text>Details lol</Text>
+    <View style={styles.app}>
+      <Text style={{marginTop: '30%'}}>{item}</Text>
+      <Button
+        title="back"
+        style={{marginTop: '30%'}}
+        onPress={() => {
+          navigation.goBack();
+        }}
+      />
     </View>
   );
 };

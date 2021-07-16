@@ -22,12 +22,13 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+// import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import HomeScreen from './screens/HomeScreen';
-import DetailsScreen from './screens/DetailsScreen';
+import AboutScreen from './screens/AboutScreen';
 
-const {Navigator, Screen} = createStackNavigator();
+const {Navigator, Screen} = createDrawerNavigator();
 
 const App = () => {
   return (
@@ -36,17 +37,17 @@ const App = () => {
         <Screen
           name="Home"
           component={HomeScreen}
-          options={{
-            headerRight: () => (
-              <Button
-                onPress={() => alert('This is a button!')}
-                title="Info"
-                color="#fff"
-              />
-            ),
-          }}
+          // options={{
+          //   headerRight: () => (
+          //     <Button
+          //       onPress={() => alert('This is a button!')}
+          //       title="Info"
+          //       color="#fff"
+          //     />
+          //   ),
+          // }}
         />
-        <Screen name="Details" component={DetailsScreen} />
+        <Screen name="About" component={AboutScreen} />
       </Navigator>
     </NavigationContainer>
   );

@@ -2,14 +2,21 @@ import React from 'react';
 import {Button, Text, View} from 'react-native';
 import ListTasks from '../components/ListTasks';
 
+import styles from '../styles/GeneralStyle';
+
+import {createStackNavigator} from '@react-navigation/stack';
+import ListScreen from './ListScreen';
+import DetailsScreen from './DetailsScreen';
+
+const {Navigator, Screen} = createStackNavigator();
+
 const HomeScreen = ({navigation}) => {
   return (
-    <View style={{flex: 1, marginTop: '20%', alignItems: 'center'}}>
-      <Text>HOME SCREEN</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}></Button>
-      <ListTasks></ListTasks>
+    <View style={styles.app}>
+      <Navigator initialRouteName="List" screenOptions={{headerShown: false}}>
+        <Screen name="List" component={ListScreen} />
+        <Screen name="Details" component={DetailsScreen} />
+      </Navigator>
     </View>
   );
 };
