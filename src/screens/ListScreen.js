@@ -4,18 +4,8 @@ import styles from '../styles/GeneralStyle';
 
 import ListTasks from '../components/ListTasks';
 import Task from '../components/Task';
-const ListScreen = () => {
-  const [inputTask, setInputTask] = useState('');
-  const [taskList, setTaskList] = useState([]);
-
-  const handleAdd = () => {
-    setTaskList([...taskList, inputTask]);
-    setInputTask('');
-  };
-
-  const handleRemove = id =>
-    setTaskList(taskList.filter((_, index) => index != id));
-
+const ListScreen = ({navigation}) => {
+  const taskList = ['abcd', 'asdas', 'dsasdasd'];
   return (
     <View style={styles.app}>
       {/* <Text>HOME SCREEN</Text> */}
@@ -28,14 +18,14 @@ const ListScreen = () => {
           taskList.map((task, index) => (
             <Task
               key={index}
-              handleRemove={handleRemove}
+              // handleRemove={handleRemove}
               task={task}
               id={index}
             />
           ))
         )}
       </View>
-      <View style={{position: 'absolute', bottom: '10%', alignSelf: 'center'}}>
+      {/* <View style={{position: 'absolute', bottom: '10%', alignSelf: 'center'}}>
         <TextInput
           style={styles.inputField}
           placeholder="baga aici tasku'!"
@@ -44,8 +34,22 @@ const ListScreen = () => {
           defaultValue={inputTask}
         />
         <Button title="Add" onPress={handleAdd} />
-      </View>
+        <Button
+          title="OPEN MODAL"
+          onPress={() => {
+            navigation.navigate('AddTask', {mode: 'modal'});
+          }}
+        />
+      </View> */}
       {/* <Button style={{position: 'absolute'}} title="Add"></Button> */}
+      <View style={{position: 'absolute', bottom: '10%', alignSelf: 'center'}}>
+        <Button
+          title="ADD"
+          onPress={() => {
+            navigation.navigate('AddTask');
+          }}
+        />
+      </View>
     </View>
   );
 };
