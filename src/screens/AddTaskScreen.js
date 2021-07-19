@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // backgroundColor: '#fafafa',
     borderRadius: 8,
-    borderWidth: 1,
+    // borderWidth: 1,
   },
 
   actionContainer: {
