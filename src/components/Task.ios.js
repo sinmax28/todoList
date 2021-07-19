@@ -1,8 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faSquare} from '@fortawesome/free-regular-svg-icons';
+import {faInfoCircle, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
+import {set} from 'lodash';
+
 const Task = ({handleRemove, task, id}) => {
   const navigation = useNavigation();
+  const [checkIcon, setCheckIcon] = useState(faSquare);
+
+  const handleCheck = () => {
+    if (checkIcon == faSquare) {
+      setCheckIcon(faCheckSquare);
+    } else {
+      setCheckIcon(faSquare);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.taskContainer}>
@@ -11,10 +25,13 @@ const Task = ({handleRemove, task, id}) => {
         </Text>
       </View>
       <View style={styles.actionContainer}>
-        <Button
-          title="details"
-          onPress={() => navigation.navigate('Details', {item: task})}></Button>
-        <Button title="X" onPress={() => handleRemove(id)}></Button>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Details', {item: task})}>
+          <FontAwesomeIcon icon={faInfoCircle} size={24} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleCheck}>
+          <FontAwesomeIcon icon={checkIcon} size={24} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -22,47 +39,64 @@ const Task = ({handleRemove, task, id}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '80%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 4,
+    borderRadius: 8,
+    width: '90%',
     height: 50,
     backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: 'grey',
-    borderRadius: 8,
-    borderColor: 'black',
+    // borderColor: 'black',
     marginBottom: '5%',
     alignItems: 'center',
-    display: 'flex',
+    // display: 'flex',
     // flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-evenly',
+    // flex: 1,
+    // borderWidth: 1,
   },
 
   actionContainer: {
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: '8%',
+    // paddingLeft: '2%',
+    marginRight: 0,
     // borderWidth: 1,
-    flexShrink: 1,
-    flexGrow: 1,
+    // flexShrink: 1,
+    // flexGrow: 1,
+    // width: '30%',
+    justifyContent: 'space-between',
+    // alignItems: 'stretch',
     // flex: 1,
-    display: 'flex',
+    flexBasis: '20%',
+    // display: 'flex',
     flexDirection: 'row',
     // position: 'absolute',
     // right: 10,
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
+    // alignSelf: 'flex-end',
+    // justifyContent: 'flex-end',
   },
 
   task: {
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold',
     justifyContent: 'center',
+    fontSize: 18,
   },
 
   taskContainer: {
-    // flex: 1,
+    // flex: 2,
     // borderWidth: 1,
-    marginLeft: '10%',
-    marginRight: '10%',
-    flexShrink: 2,
-    flexGrow: 2,
+    // marginLeft: '10%',
+    // marginRight: '10%',
+    // flexShrink: 2,
+    // flexGrow: 2,
+    flexBasis: '40%',
+    // width: '70%',
   },
 });
 

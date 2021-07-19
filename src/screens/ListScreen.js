@@ -1,28 +1,80 @@
 import React, {useState} from 'react';
-import {Button, View, TextInput, Text} from 'react-native';
+import {
+  Button,
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 import styles from '../styles/GeneralStyle';
 
 import ListTasks from '../components/ListTasks';
 import Task from '../components/Task';
+import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+
 const ListScreen = ({navigation}) => {
-  const taskList = ['abcd', 'asdas', 'dsasdasd'];
+  const taskList = [
+    'abcdkjsbdkabskjdbajksdbjkas',
+    'asdas',
+    'dsasdasd',
+    'abcdkjsbdkabskjdbajksdbjkas',
+    'asdas',
+    'dsasdasd',
+    'abcdkjsbdkabskjdbajksdbjkas',
+    'asdas',
+    'dsasdasd',
+    'abcdkjsbdkabskjdbajksdbjkas',
+    'asdas',
+    'dsasdasd',
+    'abcdkjsbdkabskjdbajksdbjkas',
+    'asdas',
+    'dsasdasd',
+    'abcdkjsbdkabskjdbajksdbjkas',
+    'asdas',
+    'dsasdasd',
+  ];
+
+  const extractKey = item => item.id.toString();
   return (
     <View style={styles.app}>
-      {/* <Text>HOME SCREEN</Text> */}
-      {/* <ListTasks></ListTasks> */}
-
-      <View style={{marginTop: '30%', alignItems: 'center'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          marginTop: '20%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          // borderWidth: 1,
+        }}>
         {!taskList.length ? (
           <Text>Nimic de aratat :'(</Text>
         ) : (
-          taskList.map((task, index) => (
-            <Task
-              key={index}
-              // handleRemove={handleRemove}
-              task={task}
-              id={index}
-            />
-          ))
+          // taskList.map((task, index) => (
+          //   <Task
+          //     key={index}
+          //     // handleRemove={handleRemove}
+          //     task={task}
+          //     id={index}
+          //   />
+          // ))
+
+          <FlatList
+            // style={{alignItems: 'center'}}
+            contentContainerStyle={{
+              alignItems: 'center',
+              paddingTop: '5%',
+              paddingBottom: '30%',
+            }}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            data={taskList}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={(item, index) => {
+              console.log(item);
+              return <Task key={index} task={item.item} id={index} />;
+            }}
+          />
         )}
       </View>
       {/* <View style={{position: 'absolute', bottom: '10%', alignSelf: 'center'}}>
@@ -42,13 +94,13 @@ const ListScreen = ({navigation}) => {
         />
       </View> */}
       {/* <Button style={{position: 'absolute'}} title="Add"></Button> */}
-      <View style={{position: 'absolute', bottom: '10%', alignSelf: 'center'}}>
-        <Button
-          title="ADD"
+      <View style={{position: 'absolute', bottom: '5%', alignSelf: 'center'}}>
+        <TouchableOpacity
           onPress={() => {
             navigation.navigate('AddTask');
-          }}
-        />
+          }}>
+          <FontAwesomeIcon icon={faPlusCircle} size={64} />
+        </TouchableOpacity>
       </View>
     </View>
   );

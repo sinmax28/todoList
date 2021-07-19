@@ -23,17 +23,31 @@ import {
 
 import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createDrawerNavigator, DrawerItem} from '@react-navigation/drawer';
 
 import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
+
+import {faHome} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Navigator initialRouteName="Home">
+      <Navigator
+        initialRouteName="Home"
+        drawerStyle={{width: '50%'}}
+        // drawerContent={props => {
+        //   return (
+        //     <DrawerItem
+        //       label="Home"
+        //       icon={() => <FontAwesomeIcon icon={faHome} />}
+        //     />
+        //   );
+        // }}>
+      >
         <Screen
           name="Home"
           component={HomeScreen}

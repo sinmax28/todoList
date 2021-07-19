@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, Modal, Text, View} from 'react-native';
 import ListTasks from '../components/ListTasks';
 
 import styles from '../styles/GeneralStyle';
@@ -14,14 +14,14 @@ const {Navigator, Screen} = createStackNavigator();
 // const ModalNav = createStackNavigator();
 
 const HomeScreen = ({navigation}) => {
-  const [taskList, setTaskList] = useState([]);
+  // const [taskList, setTaskList] = useState([]);
 
-  const handleAdd = inputTask => {
-    setTaskList([...taskList, inputTask]);
-    setInputTask('');
-  };
-  const handleRemove = id =>
-    setTaskList(taskList.filter((_, index) => index != id));
+  // const handleAdd = inputTask => {
+  //   setTaskList([...taskList, inputTask]);
+  //   setInputTask('');
+  // };
+  // const handleRemove = id =>
+  //   setTaskList(taskList.filter((_, index) => index != id));
   return (
     <View style={styles.app}>
       <Navigator
@@ -31,12 +31,12 @@ const HomeScreen = ({navigation}) => {
         <Screen
           name="Tasks"
           component={TaskContent}
-          initialParams={{handleRemove: handleRemove}}
+          // initialParams={{handleRemove: handleRemove}}
         />
         <Screen
           name="AddTask"
           component={AddTaskScreen}
-          initialParams={{handleAdd: handleAdd}}
+          // initialParams={{handleAdd: handleAdd}}
         />
       </Navigator>
     </View>
