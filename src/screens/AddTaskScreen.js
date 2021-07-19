@@ -62,7 +62,7 @@ const AddTaskScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderWidth: 1,
+    // borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     // backgroundColor: '#fafafa',
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
 
   wrapper: {
-    width: '90%',
+    width: '85%',
   },
 
   titleContainer: {
