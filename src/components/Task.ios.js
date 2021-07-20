@@ -4,17 +4,17 @@ import {useNavigation} from '@react-navigation/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSquare} from '@fortawesome/free-regular-svg-icons';
 import {faInfoCircle, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
+import {useDispatch} from 'react-redux';
+import {toggleTask} from '../redux/task/taskActions';
 
-const Task = ({handleRemove, task}) => {
+const Task = ({task}) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [checkIcon, setCheckIcon] = useState(faSquare);
+  const [checkIcon, setCheckIcon] = useState(faCheckSquare);
 
   const handleCheck = () => {
-    if (checkIcon == faSquare) {
-      setCheckIcon(faCheckSquare);
-    } else {
-      setCheckIcon(faSquare);
-    }
+    dispatch(toggleTask(task.id));
+    // setCheckIcon(task.complete ? faCheckSquare : faSquare);
   };
   return (
     <View style={styles.container}>
@@ -29,7 +29,10 @@ const Task = ({handleRemove, task}) => {
           <FontAwesomeIcon icon={faInfoCircle} size={24} />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCheck}>
-          <FontAwesomeIcon icon={checkIcon} size={24} />
+          <FontAwesomeIcon
+            icon={task.complete ? faCheckSquare : faSquare}
+            size={24}
+          />
         </TouchableOpacity>
       </View>
     </View>

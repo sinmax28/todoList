@@ -15,9 +15,10 @@ const AddTaskScreen = ({navigation}) => {
     if (title.length == 0 || description.length == 0) return;
 
     let task = {
-      id: tasks.length,
+      id: Date.now(),
       title: title,
       description: description,
+      complete: false,
     };
 
     dispatch(addTask(task));

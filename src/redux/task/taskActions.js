@@ -13,3 +13,10 @@ export const deleteTask = id => {
     payload: id,
   };
 };
+
+export const toggleTask = id => {
+  return {
+    type: ACTIONS.TOGGLE_TASK,
+    payload: id,
+  };
+};
