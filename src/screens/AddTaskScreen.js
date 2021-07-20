@@ -1,11 +1,31 @@
 import React, {useState} from 'react';
 import {Button, Modal, StyleSheet, Text, TextInput, View} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {addTask, deleteTask} from '../redux';
 import {Button as ButtonDeAlaFain} from 'react-native-elements';
 const AddTaskScreen = ({navigation}) => {
+  const tasks = useSelector(state => state.task.tasks);
+  console.log(tasks);
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (title.length == 0 || description.length == 0) return;
+
+    let task = {
+      id: tasks.length,
+      title: title,
+      description: description,
+    };
+
+    dispatch(addTask(task));
+    setTitle('');
+    setDescription('');
+    navigation.goBack();
+    console.log(task);
+  };
 
   return (
     <View style={styles.container}>

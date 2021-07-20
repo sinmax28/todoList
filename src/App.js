@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
+import {Provider} from 'react-redux';
+import store from './redux/store';
 import {
   SafeAreaView,
   ScrollView,
@@ -35,35 +37,37 @@ const {Navigator, Screen} = createDrawerNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Navigator
-        initialRouteName="Home"
-        drawerStyle={{width: '50%'}}
-        // drawerContent={props => {
-        //   return (
-        //     <DrawerItem
-        //       label="Home"
-        //       icon={() => <FontAwesomeIcon icon={faHome} />}
-        //     />
-        //   );
-        // }}>
-      >
-        <Screen
-          name="Home"
-          component={HomeScreen}
-          // options={{
-          //   headerRight: () => (
-          //     <Button
-          //       onPress={() => alert('This is a button!')}
-          //       title="Info"
-          //       color="#fff"
+    <Provider store={store}>
+      <NavigationContainer>
+        <Navigator
+          initialRouteName="Home"
+          drawerStyle={{width: '50%'}}
+          // drawerContent={props => {
+          //   return (
+          //     <DrawerItem
+          //       label="Home"
+          //       icon={() => <FontAwesomeIcon icon={faHome} />}
           //     />
-          //   ),
-          // }}
-        />
-        <Screen name="About" component={AboutScreen} />
-      </Navigator>
-    </NavigationContainer>
+          //   );
+          // }}>
+        >
+          <Screen
+            name="Home"
+            component={HomeScreen}
+            // options={{
+            //   headerRight: () => (
+            //     <Button
+            //       onPress={() => alert('This is a button!')}
+            //       title="Info"
+            //       color="#fff"
+            //     />
+            //   ),
+            // }}
+          />
+          <Screen name="About" component={AboutScreen} />
+        </Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

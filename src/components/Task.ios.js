@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSquare} from '@fortawesome/free-regular-svg-icons';
 import {faInfoCircle, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
 
-const Task = ({handleRemove, task, id}) => {
+const Task = ({handleRemove, task}) => {
   const navigation = useNavigation();
   const [checkIcon, setCheckIcon] = useState(faSquare);
 
@@ -20,12 +20,12 @@ const Task = ({handleRemove, task, id}) => {
     <View style={styles.container}>
       <View style={styles.taskContainer}>
         <Text numberOfLines={1} style={styles.task}>
-          {task}
+          {task.title}
         </Text>
       </View>
       <View style={styles.actionContainer}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Details', {item: task})}>
+          onPress={() => navigation.navigate('Details', {id: task.id})}>
           <FontAwesomeIcon icon={faInfoCircle} size={24} />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCheck}>

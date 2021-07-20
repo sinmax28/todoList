@@ -13,28 +13,10 @@ import ListTasks from '../components/ListTasks';
 import Task from '../components/Task';
 import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {useSelector} from 'react-redux';
 
 const ListScreen = ({navigation}) => {
-  const taskList = [
-    'abcdkjsbdkabskjdbajksdbjkas',
-    'asdas',
-    'dsasdasd',
-    'abcdkjsbdkabskjdbajksdbjkas',
-    'asdas',
-    'dsasdasd',
-    'abcdkjsbdkabskjdbajksdbjkas',
-    'asdas',
-    'dsasdasd',
-    'abcdkjsbdkabskjdbajksdbjkas',
-    'asdas',
-    'dsasdasd',
-    'abcdkjsbdkabskjdbajksdbjkas',
-    'asdas',
-    'dsasdasd',
-    'abcdkjsbdkabskjdbajksdbjkas',
-    'asdas',
-    'dsasdasd',
-  ];
+  const taskList = useSelector(state => state.task.tasks);
 
   const extractKey = item => item.id.toString();
   return (
@@ -69,10 +51,10 @@ const ListScreen = ({navigation}) => {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             data={taskList}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(item, index) => item.id}
             renderItem={(item, index) => {
               console.log(item);
-              return <Task key={index} task={item.item} id={index} />;
+              return <Task key={item.item.id} task={item.item} />;
             }}
           />
         )}

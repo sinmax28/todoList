@@ -1,26 +1,25 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
+import {useSelector} from 'react-redux';
 // import styles from '../styles/GeneralStyle';
 
 const DetailsScreen = ({navigation, route}) => {
-  const {item} = route.params;
+  const {id} = route.params;
+
+  const task = useSelector(
+    state => state.task.tasks.filter(item => item.id === id)[0],
+  );
+  console.log(task);
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{item}</Text>
+          <Text style={styles.title}>{task.title}</Text>
         </View>
         <View style={styles.border}></View>
         <View style={styles.descContainer}>
-          <Text style={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed
-            mauris in diam volutpat lacinia in eget urna. Mauris maximus posuere
-            urna ac commodo. Sed a lectus tempus, dictum nisi sit amet, finibus
-            est. Curabitur hendrerit ultricies orci, vulputate rhoncus ex
-            volutpat at. Integer risus arcu, laoreet et pharetra non, auctor in
-            orci.
-          </Text>
+          <Text style={styles.description}>{task.description}</Text>
         </View>
 
         <View style={styles.actionContainer}>
