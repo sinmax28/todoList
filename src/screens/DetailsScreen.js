@@ -11,6 +11,7 @@ const DetailsScreen = ({navigation, route}) => {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{item}</Text>
         </View>
+        <View style={styles.border}></View>
         <View style={styles.descContainer}>
           <Text style={styles.description}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed
@@ -57,6 +58,15 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
 
+  border: {
+    borderWidth: 2.5,
+    borderRadius: 10,
+    marginBottom: '5%',
+    marginTop: '1%',
+    width: '100%',
+    backgroundColor: 'black',
+  },
+
   description: {
     fontFamily: 'Helvetica',
     fontSize: 16,
@@ -71,12 +81,12 @@ const styles = StyleSheet.create({
     // flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    borderBottomColor: 'grey',
-    borderBottomWidth: 7,
-    borderBottomStartRadius: 5,
-    borderBottomEndRadius: 5,
-    paddingBottom: '2%',
-    marginBottom: '5%',
+    // borderBottomColor: 'grey',
+    // borderBottomWidth: 7,
+    // borderBottomStartRadius: 5,
+    // borderBottomEndRadius: 5,
+    // paddingBottom: '2%',
+    // marginBottom: '5%',
   },
 
   wrapper: {
