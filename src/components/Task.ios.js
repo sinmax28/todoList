@@ -10,11 +10,10 @@ import {toggleTask} from '../redux/task/taskActions';
 const Task = ({task}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [checkIcon, setCheckIcon] = useState(faCheckSquare);
+  // console.log('checkicon: .....' + checkIcon.iconName);
 
   const handleCheck = () => {
     dispatch(toggleTask(task.id));
-    // setCheckIcon(task.complete ? faCheckSquare : faSquare);
   };
   return (
     <View style={styles.container}>
