@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Modal, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {addTask, deleteTask} from '../redux';
+import {addTask, deleteTask} from '../stores';
 import {Button as ButtonDeAlaFain} from 'react-native-elements';
 const AddTaskScreen = ({navigation}) => {
   const tasks = useSelector(state => state.task.tasks);
@@ -35,9 +35,9 @@ const AddTaskScreen = ({navigation}) => {
           <Text style={styles.title}>Add Task...</Text>
         </View>
         <TextInput
+          maxLength={10}
           style={styles.inputField}
           placeholder="Title"
-          placeholderT
           onChangeText={input => setTitle(input)}
           // onSubmitEditing={handleAdd}
           value={title}
@@ -45,7 +45,7 @@ const AddTaskScreen = ({navigation}) => {
         <TextInput
           multiline={true}
           numberOfLines={10}
-          style={styles.inputField}
+          style={[styles.inputField, {height: 80}]}
           placeholder="Description"
           onChangeText={input => setDescription(input)}
           // onSubmitEditing={handleAdd}
@@ -59,6 +59,7 @@ const AddTaskScreen = ({navigation}) => {
               borderWidth: 1,
             }}> */}
           <ButtonDeAlaFain
+            containerStyle={{width: '45%'}}
             buttonStyle={styles.actionButton}
             titleStyle={{color: 'black'}}
             type="outline"
@@ -68,6 +69,7 @@ const AddTaskScreen = ({navigation}) => {
             }}
           />
           <ButtonDeAlaFain
+            containerStyle={{width: '45%'}}
             buttonStyle={[styles.actionButton, {backgroundColor: 'black'}]}
             title="Submit"
             // style={{backgroundColor: 'blue', borderWidth: 1}}
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
   },
 
   actionButton: {
-    width: 140,
+    // width: 140,
     // flex: 1,
     borderWidth: 1,
     borderColor: 'black',
@@ -148,6 +150,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     // flex: 1,
+    fontSize: 20,
+    paddingLeft: '5%',
   },
 });
 

@@ -1,16 +1,22 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {deleteTask} from '../stores';
 // import styles from '../styles/GeneralStyle';
 
 const DetailsScreen = ({navigation, route}) => {
+  const dispatch = useDispatch();
   const {id} = route.params;
 
-  const task = useSelector(
-    state => state.task.tasks.filter(item => item.id === id)[0],
+  const task = useSelector(state =>
+    state.task.tasks.find(item => item.id === id),
   );
-  console.log(task);
+
+  if (!task) {
+    return <></>;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -24,11 +30,26 @@ const DetailsScreen = ({navigation, route}) => {
 
         <View style={styles.actionContainer}>
           <Button
-            title="Back"
+            title="Delete"
+            type="outline"
+            containerStyle={styles.button}
+            titleStyle={{color: 'black'}}
             buttonStyle={{
-              width: 140,
+              borderColor: 'black',
+              borderWidth: 1,
+            }}
+            onPress={() => {
+              dispatch(deleteTask(task.id));
+              navigation.goBack();
+            }}
+          />
+          <Button
+            title="Back"
+            containerStyle={styles.button}
+            buttonStyle={{
               backgroundColor: 'black',
               borderColor: 'black',
+              borderWidth: 1,
             }}
             onPress={() => {
               navigation.goBack();
@@ -49,7 +70,12 @@ const styles = StyleSheet.create({
   },
 
   actionContainer: {
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+
+  button: {
+    width: '45%',
   },
 
   title: {
@@ -76,16 +102,8 @@ const styles = StyleSheet.create({
   },
 
   titleContainer: {
-    // borderWidth: 1,
-    // flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    // borderBottomColor: 'grey',
-    // borderBottomWidth: 7,
-    // borderBottomStartRadius: 5,
-    // borderBottomEndRadius: 5,
-    // paddingBottom: '2%',
-    // marginBottom: '5%',
   },
 
   wrapper: {

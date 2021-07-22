@@ -15,7 +15,7 @@ import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import {asyncCall} from '../redux/task/taskActions';
+import {asyncCall} from '../stores/task/taskActions';
 
 const ListScreen = ({navigation}) => {
   const taskList = useSelector(state => state.task.tasks);
