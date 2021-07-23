@@ -6,8 +6,13 @@ import {faSquare} from '@fortawesome/free-regular-svg-icons';
 import {faInfoCircle, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
 import {useDispatch} from 'react-redux';
 import {toggleTask} from '../stores/task/taskActions';
+import {TaskType} from '../types/store/task/taskTypes';
 
-const Task = ({task}) => {
+interface Props {
+  task: TaskType;
+}
+
+const Task: React.FC<Props> = ({task}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   // console.log('checkicon: .....' + checkIcon.iconName);

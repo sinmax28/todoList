@@ -10,9 +10,9 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer, applyMiddleware(reduxThunk));
 
-export default store = createStore(
-  persistedReducer,
-  applyMiddleware(reduxThunk),
-);
 export const persistor = persistStore(store);
+export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

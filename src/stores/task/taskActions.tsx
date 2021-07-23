@@ -1,22 +1,22 @@
 import ACTIONS from './taskTypes';
 import axios from 'axios';
-import {response} from 'express';
+import {TaskType} from '../../types/store/task/taskTypes';
 
-export const addTask = task => {
+export const addTask = (task: TaskType) => {
   return {
     type: ACTIONS.ADD_TASK,
     payload: task,
   };
 };
 
-export const deleteTask = id => {
+export const deleteTask = (id: number) => {
   return {
     type: ACTIONS.DELETE_TASK,
     payload: id,
   };
 };
 
-export const toggleTask = id => {
+export const toggleTask = (id: number) => {
   return {
     type: ACTIONS.TOGGLE_TASK,
     payload: id,

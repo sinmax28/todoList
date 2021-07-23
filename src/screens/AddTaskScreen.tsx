@@ -3,8 +3,21 @@ import {Button, Modal, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {addTask, deleteTask} from '../stores';
 import {Button as ButtonDeAlaFain} from 'react-native-elements';
-const AddTaskScreen = ({navigation}) => {
-  const tasks = useSelector(state => state.task.tasks);
+import {StackNavigationProp} from '@react-navigation/stack';
+import {HomeStackParamList} from '../types/navigation/HomeTypes';
+import {RootState} from '../stores/store';
+import {TaskType} from '../types/store/task/taskTypes';
+
+type AddTaskScreenProp = StackNavigationProp<HomeStackParamList, 'AddTask'>;
+
+type Props = {
+  navigation: AddTaskScreenProp;
+};
+
+const AddTaskScreen = ({navigation}: Props) => {
+  const tasks: TaskType[] = useSelector(
+    (state: RootState): TaskType[] => state.task.tasks,
+  );
   console.log(tasks);
   const dispatch = useDispatch();
 

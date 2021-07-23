@@ -10,10 +10,23 @@ import DetailsScreen from './DetailsScreen';
 import AddTaskScreen from './AddTaskScreen';
 import TaskContent from './TaskContent';
 
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {RootDrawerParamList} from '../types/navigation/RootTypes';
+import {Props} from '@fortawesome/react-native-fontawesome';
+
 const {Navigator, Screen} = createStackNavigator();
 // const ModalNav = createStackNavigator();
 
-const HomeScreen = ({navigation}) => {
+type HomeScreenNavigationProp = DrawerNavigationProp<
+  RootDrawerParamList,
+  'Home'
+>;
+
+interface Prop {
+  navigation: HomeScreenNavigationProp;
+}
+
+const HomeScreen = ({navigation}: Prop) => {
   // const [taskList, setTaskList] = useState([]);
 
   // const handleAdd = inputTask => {

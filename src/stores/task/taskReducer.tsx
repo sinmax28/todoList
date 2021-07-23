@@ -1,6 +1,9 @@
 import ACTIONS from './taskTypes';
+import {TaskType} from '../../types/store/task/taskTypes';
+import actionType from '../../types/store/task/actionType';
+import taskStateType from '../../types/store/task/taskStateType';
 
-const initialState = {
+const initialState: taskStateType = {
   tasks: [],
   todos: {
     data: [],
@@ -9,7 +12,7 @@ const initialState = {
   },
 };
 
-export default taskReducer = (state = initialState, action) => {
+const taskReducer = (state = initialState, action: actionType) => {
   switch (action.type) {
     case ACTIONS.ADD_TASK:
       return {
@@ -20,7 +23,12 @@ export default taskReducer = (state = initialState, action) => {
     case ACTIONS.DELETE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter(obj => obj.id != action.payload),
+        tasks: state.tasks.filter((obj: TaskType) => {
+          if (typeof action.payload === 'number') {
+            obj.id !== action.payload;
+          }
+          return true;
+        }),
       };
 
     case ACTIONS.TOGGLE_TASK:
@@ -66,3 +74,5 @@ export default taskReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default taskReducer;

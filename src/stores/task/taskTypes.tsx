@@ -1,4 +1,4 @@
-export default ACTIONS = {
+const ACTIONS = {
   ADD_TASK: 'ADD_TASK',
   DELETE_TASK: 'DELETE_TASK',
   TOGGLE_TASK: 'TOGGLE_TASK',
@@ -6,3 +6,5 @@ export default ACTIONS = {
   API_LOADING: 'API_LOADING',
   API_ERROR: 'API_ERROR',
 };
+
+export default ACTIONS;
