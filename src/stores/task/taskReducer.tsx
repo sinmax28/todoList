@@ -25,7 +25,7 @@ const taskReducer = (state = initialState, action: actionType) => {
         ...state,
         tasks: state.tasks.filter((obj: TaskType) => {
           if (typeof action.payload === 'number') {
-            obj.id !== action.payload;
+            return obj.id !== action.payload;
           }
           return true;
         }),
