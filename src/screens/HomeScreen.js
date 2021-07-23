@@ -31,6 +31,7 @@ const HomeScreen = ({navigation}) => {
         <Screen
           name="Tasks"
           component={TaskContent}
+          //test
           // initialParams={{handleRemove: handleRemove}}
         />
         <Screen
