@@ -8,4 +8,4 @@ import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 
-//ELEKTRONIK SUPERSONIK23
+//ELEKTRONIK SUPERSONIK2
