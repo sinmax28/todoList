@@ -7,6 +7,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {HomeStackParamList} from '../types/navigation/HomeTypes';
 import {RootState} from '../stores/store';
 import {TaskType} from '../types/store/task/taskTypes';
+import taskStateType from '../types/store/task/taskStateType';
 
 type AddTaskScreenProp = StackNavigationProp<HomeStackParamList, 'AddTask'>;
 
@@ -15,9 +16,7 @@ type Props = {
 };
 
 const AddTaskScreen = ({navigation}: Props) => {
-  const tasks: TaskType[] = useSelector(
-    (state: RootState): TaskType[] => state.task.tasks,
-  );
+  const tasks = useSelector((state: RootState) => state.task.tasks);
   console.log(tasks);
   const dispatch = useDispatch();
 

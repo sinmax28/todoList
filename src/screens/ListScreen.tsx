@@ -17,6 +17,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {TaskStackParamList} from '../types/navigation/TaskContentTypes';
+import {RootState} from '../stores/store';
+import {TaskType} from '../types/store/task/taskTypes';
 
 type ListScreenNavigationProp = StackNavigationProp<TaskStackParamList, 'List'>;
 
@@ -25,7 +27,7 @@ type Props = {
 };
 
 const ListScreen = ({navigation}: Props) => {
-  const taskList = useSelector(state => state.task.tasks);
+  const taskList = useSelector((state: RootState) => state.task.tasks);
   console.log('rendering list!!!');
   // const todos = useSelector(state => state.task.todos);
   // const dispatch = useDispatch();
@@ -69,7 +71,7 @@ const ListScreen = ({navigation}: Props) => {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             data={taskList}
-            keyExtractor={item => item.id}
+            keyExtractor={(item: TaskType): string => item.id.toString(10)}
             renderItem={item => {
               console.log(item);
               return <Task key={item.item.id} task={item.item} />;

@@ -1,15 +1,30 @@
+import {RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
 import {deleteTask} from '../stores';
+import {RootState} from '../stores/store';
+import {TaskStackParamList} from '../types/navigation/TaskContentTypes';
 // import styles from '../styles/GeneralStyle';
 
-const DetailsScreen = ({navigation, route}) => {
+type DetailsScreenNavigationProp = StackNavigationProp<
+  TaskStackParamList,
+  'Details'
+>;
+type RouteType = RouteProp<{params: {id: number}}, 'params'>;
+
+type Props = {
+  navigation: DetailsScreenNavigationProp;
+  route: RouteType;
+};
+
+const DetailsScreen = ({navigation, route}: Props) => {
   const dispatch = useDispatch();
   const {id} = route.params;
 
-  const task = useSelector(state =>
+  const task = useSelector((state: RootState) =>
     state.task.tasks.find(item => item.id === id),
   );
 

@@ -12,12 +12,15 @@ const initialState: taskStateType = {
   },
 };
 
-const taskReducer = (state = initialState, action: actionType) => {
+const taskReducer = (
+  state: taskStateType = initialState,
+  action: actionType,
+): taskStateType => {
   switch (action.type) {
     case ACTIONS.ADD_TASK:
       return {
         ...state,
-        tasks: [...state.tasks, action.payload],
+        tasks: [...state.tasks, action.payload as TaskType],
       };
 
     case ACTIONS.DELETE_TASK:

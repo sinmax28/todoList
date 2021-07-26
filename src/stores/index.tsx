@@ -1,1 +1,1 @@
-export {addTask, deleteTask} from './task/taskActions';
+export * from './task/taskActions';

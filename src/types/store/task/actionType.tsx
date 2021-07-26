@@ -1,4 +1,7 @@
+import taskStateType from './taskStateType';
+import {TaskType} from './taskTypes';
+
 export default interface actionType {
   type: string;
-  payload: object | number | string | undefined;
+  payload?: TaskType | number | string;
 }
