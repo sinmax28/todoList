@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSquare} from '@fortawesome/free-regular-svg-icons';
 import {faInfoCircle, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
 import {useDispatch} from 'react-redux';
-import {toggleTask} from '../stores/task/taskActions';
+import {toggleTask} from '../stores/index';
 import {TaskType} from '../types/store/task/taskTypes';
 
 interface Props {

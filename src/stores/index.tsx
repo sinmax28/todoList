@@ -1,1 +1,2 @@
-export * from './task/taskActions';
+// export * from './task/taskActions';
+export {addTask, deleteTask, toggleTask} from './task/taskReducer';
